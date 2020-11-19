@@ -5,8 +5,13 @@
              x:Class="WeatherApp.Views.MainView"
              Title="{Binding City}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding Refresh}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
 
-    <Grid>
+    <Grid BackgroundColor="#5FC3FF">
+        
+        
         <ScrollView BackgroundColor="Transparent">
             <controls:RepeaterView ItemsSource="{Binding Days}" Direction="Column">
                 <controls:RepeaterView.ItemsTemplate>
@@ -20,16 +25,25 @@
                                 AlignItems="Start" JustifyContent="Start">
                                 <controls:RepeaterView.ItemsTemplate>
                                     <DataTemplate>
-                                        <StackLayout Margin="10" Padding="20" WidthRequest="150" Background="#99FFFFFF">
-                                            <Label Text="{Binding TimeAsString}" HorizontalOptions="Center"
-                                                   FontSize="16" FontAttributes="Bold"/>
-                                            
+                                        <StackLayout Margin="10" Padding="20" WidthRequest="150" HeightRequest="225"
+                                                     AutomationProperties.IsInAccessibleTree="False"
+                                                     BackgroundColor="White">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup>
+
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+
+                                            <Label Text="{Binding TimeAsString}"
+                                                   HorizontalOptions="Center"  TextColor="Black"
+                                                   FontSize="18" FontAttributes="Bold"/>
                                             <Image WidthRequest="100" HeightRequest="100"
                                                    Aspect="AspectFit" HorizontalOptions="Center" Source="{Binding Icon}" />
-                                            
-                                            <Label Text="{Binding Temperature, StringFormat='{0}° C'}" HorizontalOptions="Center"
-                                                   FontSize="14" FontAttributes="Bold"/>
-                                            <Label Text="{Binding Description}" HorizontalOptions="Center"
+                                            <Label Text="{Binding Temperature, StringFormat='{0}° C'}"
+                                                   HorizontalOptions="Center"  TextColor="Black"
+                                                   FontSize="16" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Description}" TextColor="Black"
+                                                   HorizontalOptions="Center" HorizontalTextAlignment="Center"
                                                    FontSize="14" FontAttributes="Bold"/>
                                         </StackLayout>
                                     </DataTemplate>
@@ -40,5 +54,10 @@
                 </controls:RepeaterView.ItemsTemplate>
             </controls:RepeaterView>
         </ScrollView>
+        <Frame IsVisible="{Binding IsRefreshing}" BackgroundColor="White">
+            <ActivityIndicator Color="CornflowerBlue" IsRunning="{Binding IsRefreshing}"
+                               WidthRequest="100" HeightRequest="100"
+                               HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Frame>
     </Grid>
 </ContentPage>

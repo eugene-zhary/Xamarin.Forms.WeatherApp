@@ -11,7 +11,7 @@ namespace WeatherApp
         {
             InitializeComponent();
             Bootstrapper.Init();
-            MainPage = new NavigationPage(new MainView());
+            TinyNavigationHelper.Abstraction.NavigationHelper.Current.SetRootView("MainView", true);
         }
 
         protected override void OnStart()

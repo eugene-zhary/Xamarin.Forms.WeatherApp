@@ -20,10 +20,11 @@ namespace WeatherApp.Controls
         public static BindableProperty ItemsSourceProperty
             = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable<object>), typeof(RepeaterView),
                 propertyChanged: (bindable, oldValue, newValue) => {
-                    var repeater = (RepeaterView)bindable;
-                    if (repeater.ItemsTemplate == null)
-                        return;
 
+                    var repeater = (RepeaterView)bindable;
+                    if (repeater.ItemsTemplate == null) {
+                        return;
+                    }
                     MainThread.BeginInvokeOnMainThread(() => repeater.Generate());
                 });
 
@@ -35,8 +36,9 @@ namespace WeatherApp.Controls
         public void Generate()
         {
             Children.Clear();
-            if (ItemsSource == null)
+            if (ItemsSource == null) {
                 return;
+            }
 
             foreach (var item in ItemsSource) {
 
@@ -44,8 +46,9 @@ namespace WeatherApp.Controls
                     view.BindingContext = item;
                     Children.Add(view);
                 }
-                else 
+                else {
                     return;
+                }
             }
         }
 

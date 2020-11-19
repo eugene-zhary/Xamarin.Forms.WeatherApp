@@ -2,8 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TinyNavigationHelper.Abstraction;
+using TinyNavigationHelper.Forms;
 using WeatherApp.Services;
 using WeatherApp.ViewModels;
+using WeatherApp.Views;
+using Xamarin.Forms;
 
 namespace WeatherApp
 {
@@ -12,6 +16,17 @@ namespace WeatherApp
 
         public static void Init()
         {
+            var navigation = new FormsNavigationHelper();
+
+            if(Device.Idiom == TargetIdiom.Phone) {
+                navigation.RegisterView("MainView", typeof(MainView_Phone));
+            }
+            else {
+                navigation.RegisterView("MainView", typeof(MainView));
+            }
+
+
+
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterType<OpenWeatherMapWeatherService>().As<IWeatherService>();
             containerBuilder.RegisterType<MainViewModel>();

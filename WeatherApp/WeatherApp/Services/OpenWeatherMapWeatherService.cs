@@ -46,7 +46,4 @@ namespace WeatherApp.Services
         }
 
     }
-
-
-
 }
