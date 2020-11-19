@@ -54,14 +54,11 @@ namespace WeatherApp.ViewModels
 
             this.Days = new ObservableCollection<ForecastGroup>(itemGroups);
             this.City = forecast.City;
-
-
         }
         private ForecastGroup DefaultForecastGroup(ForecastItem item)
         {
             return new ForecastGroup(new List<ForecastItem>() { item }) { Date = item.DateTime.Date };
         }
-
 
     }
 }
