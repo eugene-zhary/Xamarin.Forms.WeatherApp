@@ -14,6 +14,8 @@ namespace WeatherApp.ViewModels
 {
     public class MainViewModel : ViewModel
     {
+        public event EventHandler<string> LocationNotify;
+
         private readonly IWeatherService weatherService;
 
         private string city;
@@ -42,9 +44,16 @@ namespace WeatherApp.ViewModels
         public async Task LoadData()
         {
             IsRefreshing = true;
+            Location location = new Location();
 
-            var location = await Geolocation.GetLocationAsync();
-            var forecast = await weatherService.GetForecast(location.Latitude, location.Longitude);
+            try {
+                location = await Geolocation.GetLocationAsync();
+            }
+            catch (Exception ex) {
+                this.LocationNotify?.Invoke(this, ex.Message);
+            }
+
+            Forecast forecast = await weatherService.GetForecast(location.Latitude, location.Longitude);
 
             var itemGroups = new List<ForecastGroup>();
 

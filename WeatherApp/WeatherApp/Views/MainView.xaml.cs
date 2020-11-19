@@ -17,6 +17,12 @@ namespace WeatherApp.Views
         {
             InitializeComponent();
             BindingContext = Resolver.Resolve<MainViewModel>();
+            (BindingContext as MainViewModel).LocationNotify += MainView_LocationNotify;
+        }
+
+        private void MainView_LocationNotify(object sender, string e)
+        {
+            DisplayAlert("Info", "turn your location to see the weather in your area", "ok");
         }
 
         protected override void OnAppearing()

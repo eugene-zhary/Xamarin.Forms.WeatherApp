@@ -8,6 +8,19 @@ namespace WeatherApp.Controls
 {
     public class RepeaterView : FlexLayout
     {
+        private string visualState;
+        public string VisualState {
+            get => visualState;
+            set {
+                visualState = value;
+
+                foreach (var child in Children) {
+                    VisualStateManager.GoToState(child, visualState);
+                }
+                VisualStateManager.GoToState(this, visualState);
+            }
+        }
+
         private DataTemplate itemsTemplate;
         public DataTemplate ItemsTemplate {
             get => itemsTemplate;
