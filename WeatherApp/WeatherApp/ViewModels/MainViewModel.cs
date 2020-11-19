@@ -31,7 +31,7 @@ namespace WeatherApp.ViewModels
             this.weatherService = weatherService;
         }
 
-        private async Task LoadData()
+        public async Task LoadData()
         {
             var location = await Geolocation.GetLocationAsync();
             var forecast = await weatherService.GetForecast(location.Latitude, location.Longitude);

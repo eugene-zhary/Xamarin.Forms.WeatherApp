@@ -10,7 +10,7 @@ namespace WeatherApp
         {
             InitializeComponent();
             Bootstrapper.Init();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainView());
         }
 
         protected override void OnStart()
