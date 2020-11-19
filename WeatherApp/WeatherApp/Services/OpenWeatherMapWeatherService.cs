@@ -30,7 +30,7 @@ namespace WeatherApp.Services
                     Temperature = x.main.temp,
                     WindSpeed = x.wind.speed,
                     Description = x.weather.First().description,
-                    Icon = $"http://openweathermap.org/img/w/{x.weather.First().icon}.png"
+                    Icon = $"https://openweathermap.org/img/w/{x.weather.First().icon}.png"
                 }).ToList()
             };
 

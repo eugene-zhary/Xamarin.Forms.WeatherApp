@@ -24,7 +24,10 @@ namespace WeatherApp.Views
             base.OnAppearing();
 
             if (BindingContext is MainViewModel viewModel)
-                MainThread.BeginInvokeOnMainThread(async () => await viewModel.LoadData());
+                MainThread.BeginInvokeOnMainThread(async () => 
+                {
+                    await viewModel.LoadData();
+                });
 
         }
     }

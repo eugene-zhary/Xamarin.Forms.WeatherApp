@@ -35,7 +35,7 @@ namespace WeatherApp.Controls
         public void Generate()
         {
             Children.Clear();
-            if (ItemsSource != null)
+            if (ItemsSource == null)
                 return;
 
             foreach (var item in ItemsSource) {

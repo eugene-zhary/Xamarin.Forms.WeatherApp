@@ -49,7 +49,10 @@ namespace WeatherApp.ViewModels
 
                 if (group == null) {
                     itemGroups.Add(this.DefaultForecastGroup(item));
+                    continue;
                 }
+
+                group.Items.Add(item);
             }
 
             this.Days = new ObservableCollection<ForecastGroup>(itemGroups);
